@@ -1,91 +1,65 @@
-
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React, { useState } from 'react';
+import { MdDarkMode, MdLightMode, MdMenu, MdClose } from 'react-icons/md';
+import { useDarkMode } from '../contexts/DarkModeContext';
 
 const Navbar = () => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Education', href: '#education' },
-    { name: 'Contact', href: '#contact' }
-  ];
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header 
-      className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300',
-        scrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'
-      )}
-    >
-      <div className="container mx-auto px-4 py-3 md:py-4">
-        <nav className="flex justify-between items-center">
-          <a href="#home" className="font-bold text-lg md:text-xl">
-            <span className="text-primary">Developer</span>Portfolio
-          </a>
+    <nav className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 py-4 transition-colors">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center">
+            <a href="/" className="text-2xl font-bold dark:text-white transition-colors">
+              GA
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-8">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a 
-                  href={link.href}
-                  className="text-foreground/80 hover:text-primary font-medium transition-colors"
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="#works" className="text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors">Works</a>
+            <a href="#resume" className="text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors">Resume</a>
+            <a href="#shelf" className="text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors">Shelf</a>
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-800 dark:text-gray-200"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <MdLightMode size={20} /> : <MdDarkMode size={20} />}
+            </button>
+          </div>
 
-          {/* Mobile Navigation Toggle */}
-          <button 
-            onClick={toggleMenu} 
-            className="md:hidden text-foreground focus:outline-none"
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-800 dark:text-gray-200 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
           </button>
-        </nav>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-background border-t">
-          <div className="container mx-auto px-4 py-4">
-            <ul className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a 
-                    href={link.href}
-                    className="block text-foreground/80 hover:text-primary font-medium transition-colors py-2"
-                    onClick={toggleMenu}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
-      )}
-    </header>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-4 transition-colors">
+            <div className="container mx-auto px-4 space-y-4">
+              <a href="#works" className="block text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors">Works</a>
+              <a href="#resume" className="block text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors">Resume</a>
+              <a href="#shelf" className="block text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors">Shelf</a>
+              <button
+                onClick={toggleDarkMode}
+                className="w-full text-left p-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                {isDarkMode ? "Light Mode" : "Dark Mode"}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 };
 

@@ -1,85 +1,88 @@
-
 import React from 'react';
-import { GraduationCap, Calendar, MapPin } from 'lucide-react';
+import { FaGraduationCap } from 'react-icons/fa';
 
 const Education = () => {
+  const education = [
+    {
+      degree: "Master of Science in Computer Science",
+      school: "Technical University",
+      period: "2023 - Present",
+      color: "purple",
+      description: "Specializing in Software Engineering and Distributed Systems. Research focus on cloud computing and microservices architecture."
+    },
+    {
+      degree: "Bachelor of Technology in Computer Science",
+      school: "Engineering Institute",
+      period: "2015 - 2019",
+      color: "yellow",
+      description: "Graduated with honors. Core coursework included Data Structures, Algorithms, Database Systems, and Software Engineering principles."
+    }
+  ];
+
+  const getColorClasses = (color: string) => {
+    const colors = {
+      purple: {
+        bg: 'bg-purple-500',
+        light: 'bg-purple-100 dark:bg-purple-500/20',
+        text: 'text-purple-600 dark:text-purple-400',
+        timeline: 'bg-purple-200 dark:bg-purple-500/40',
+        gradient: 'from-purple-500/20 to-purple-600/20'
+      },
+      yellow: {
+        bg: 'bg-yellow-500',
+        light: 'bg-yellow-100 dark:bg-yellow-500/20',
+        text: 'text-yellow-600 dark:text-yellow-400',
+        timeline: 'bg-yellow-200 dark:bg-yellow-500/40',
+        gradient: 'from-yellow-500/20 to-yellow-600/20'
+      }
+    };
+    return colors[color as keyof typeof colors];
+  };
+
   return (
-    <section id="education" className="section-padding">
-      <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          <span className="gradient-text">Education</span>
+    <section id="education" className="py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 transition-colors">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold mb-4 text-center text-gray-900 dark:text-white transition-colors">
+          Education
         </h2>
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+          My academic journey and qualifications
+        </p>
 
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div className="p-6 md:p-8">
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
-                <div className="flex items-center mb-4 md:mb-0">
-                  <GraduationCap className="text-primary mr-2" size={24} />
-                  <h3 className="text-2xl font-bold">MSc in Computer Science</h3>
+          {education.map((edu, index) => (
+            <div key={index} className="mb-12 last:mb-0">
+              <div className="flex items-start group">
+                <div className="mr-4 mt-1">
+                  <div className={`p-3 rounded-xl ${getColorClasses(edu.color).light} transform group-hover:scale-110 transition-all duration-300`}>
+                    <FaGraduationCap className={`${getColorClasses(edu.color).text}`} size={24} />
+                  </div>
                 </div>
-                <div className="flex items-center text-foreground/70">
-                  <Calendar size={18} className="mr-1" />
-                  <span>2023 - 2025 (Expected)</span>
+
+                <div className="flex-1">
+                  <div className={`p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 relative overflow-hidden group`}>
+                    <div className={`absolute top-0 right-0 w-[500px] h-[500px] -mr-48 -mt-48 bg-gradient-to-br ${getColorClasses(edu.color).gradient} rounded-full opacity-50 transform group-hover:scale-110 transition-transform duration-500`}></div>
+                    
+                    <div className="relative">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white transition-colors">
+                        {edu.degree}
+                      </h3>
+                      <p className={`${getColorClasses(edu.color).text} mb-4 font-medium`}>
+                        {edu.school} | {edu.period}
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-300 transition-colors">
+                        {edu.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              
-              <div className="flex items-center mb-6">
-                <MapPin size={18} className="text-primary mr-2" />
-                <h4 className="text-xl">Technical University of Darmstadt, Germany</h4>
-              </div>
-              
-              <p className="text-lg mb-6">
-                I'm excited to be pursuing my Master's degree in Computer Science at the prestigious Technical 
-                University of Darmstadt. The program will enable me to deepen my knowledge in software engineering 
-                and explore advanced topics in computer science.
-              </p>
-              
-              <div>
-                <h5 className="font-semibold mb-2">Areas of Focus:</h5>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <li className="flex items-center">
-                    <span className="text-primary mr-2">•</span>
-                    Advanced Software Engineering
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-primary mr-2">•</span>
-                    Distributed Systems
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-primary mr-2">•</span>
-                    Machine Learning & AI
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-primary mr-2">•</span>
-                    Data Science & Analytics
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-primary mr-2">•</span>
-                    Cloud Computing
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-primary mr-2">•</span>
-                    Software Architecture
-                  </li>
-                </ul>
-              </div>
+
+              {index < education.length - 1 && (
+                <div className={`ml-7 mt-8 mb-8 w-0.5 h-8 ${getColorClasses(edu.color).timeline} transition-colors`} />
+              )}
             </div>
-            
-            <div className="bg-gradient-to-r from-primary/10 to-secondary p-6 md:p-8 border-t">
-              <h5 className="font-semibold mb-3">Previous Education</h5>
-              <div className="flex flex-col md:flex-row justify-between">
-                <div>
-                  <h6 className="font-medium">Bachelor of Engineering in Computer Science</h6>
-                  <p className="text-foreground/70">University Name, Country</p>
-                </div>
-                <div className="mt-2 md:mt-0 text-foreground/70 flex items-center">
-                  <Calendar size={16} className="mr-1" />
-                  <span>2015 - 2019</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

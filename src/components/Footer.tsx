@@ -1,48 +1,44 @@
-
 import React from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-foreground text-white py-10">
-      <div className="container mx-auto">
-        <div className="flex flex-col items-center">
-          <div className="flex gap-6 mb-6">
-            <a 
-              href="https://github.com/" 
-              target="_blank" 
+    <footer className="bg-gray-50 dark:bg-gray-800 py-12 transition-colors">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center justify-center space-y-6">
+          <div className="flex space-x-6">
+            <a
+              href="https://linkedin.com"
+              target="_blank"
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-all duration-300 transform hover:scale-110"
-              aria-label="GitHub"
+              className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
-              <Github size={20} />
+              <FaLinkedin size={24} />
             </a>
-            <a 
-              href="https://linkedin.com/" 
-              target="_blank" 
+            <a
+              href="https://github.com"
+              target="_blank"
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-all duration-300 transform hover:scale-110"
-              aria-label="LinkedIn"
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
             >
-              <Linkedin size={20} />
+              <FaGithub size={24} />
             </a>
-            <a 
-              href="mailto:your-email@example.com" 
-              className="text-white/70 hover:text-white transition-all duration-300 transform hover:scale-110"
-              aria-label="Email"
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 dark:text-gray-400 hover:text-blue-400 transition-colors"
             >
-              <Mail size={20} />
+              <FaTwitter size={24} />
             </a>
           </div>
 
-          <div className="space-y-2 text-center">
-            <p className="text-white/70">
-              Thank you for visiting my portfolio
+          <div className="text-center">
+            <p className="text-gray-600 dark:text-gray-300 transition-colors">
+              © {new Date().getFullYear()} Gaurav Arora. All rights reserved.
             </p>
-            <p className="text-white/50 text-sm">
-              © {currentYear} Developer Portfolio. All Rights Reserved.
+            <p className="text-gray-500 dark:text-gray-400 text-sm mt-2 transition-colors">
+              Built with React & Tailwind CSS
             </p>
           </div>
         </div>

@@ -1,90 +1,112 @@
-
 import React from 'react';
+import { FaCode, FaServer, FaTools, FaDatabase } from 'react-icons/fa';
 
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Programming Languages",
-      skills: [
-        { name: "Java", level: 90 },
-        { name: "JavaScript", level: 85 },
-        { name: "TypeScript", level: 80 },
-        { name: "Python", level: 70 },
-        { name: "SQL", level: 85 }
-      ]
-    },
-    {
       title: "Frontend Development",
+      icon: <FaCode />,
+      color: "from-blue-500 to-blue-600",
+      iconBg: "bg-blue-400",
       skills: [
-        { name: "React", level: 88 },
-        { name: "Redux", level: 85 },
-        { name: "HTML5", level: 90 },
-        { name: "CSS3/SCSS", level: 85 },
-        { name: "Tailwind CSS", level: 80 }
+        "React.js",
+        "TypeScript",
+        "Next.js",
+        "Tailwind CSS",
+        "HTML5/CSS3",
+        "JavaScript (ES6+)"
       ]
     },
     {
       title: "Backend Development",
+      icon: <FaServer />,
+      color: "from-green-500 to-green-600",
+      iconBg: "bg-green-400",
       skills: [
-        { name: "Spring Boot", level: 90 },
-        { name: "Spring Framework", level: 85 },
-        { name: "RESTful APIs", level: 90 },
-        { name: "Microservices", level: 80 },
-        { name: "JPA/Hibernate", level: 85 }
+        "Node.js",
+        "Express.js",
+        "RESTful APIs",
+        "GraphQL",
+        "Python",
+        "Java"
       ]
     },
     {
-      title: "Tools & Technologies",
+      title: "Database & Cloud",
+      icon: <FaDatabase />,
+      color: "from-purple-500 to-purple-600",
+      iconBg: "bg-purple-400",
       skills: [
-        { name: "Git", level: 90 },
-        { name: "Docker", level: 80 },
-        { name: "Jenkins", level: 75 },
-        { name: "AWS", level: 70 },
-        { name: "Maven/Gradle", level: 85 }
+        "MongoDB",
+        "PostgreSQL",
+        "MySQL",
+        "AWS",
+        "Firebase",
+        "Docker"
+      ]
+    },
+    {
+      title: "Tools & Methods",
+      icon: <FaTools />,
+      color: "from-red-500 to-red-600",
+      iconBg: "bg-red-400",
+      skills: [
+        "Git",
+        "CI/CD",
+        "Agile/Scrum",
+        "Jest",
+        "Webpack",
+        "Linux"
       ]
     }
   ];
 
   return (
-    <section id="skills" className="section-padding bg-secondary/30">
-      <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center animate-fade-in">
-          Technical <span className="gradient-text">Skills</span>
+    <section id="skills" className="py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 transition-colors">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold mb-4 text-center text-gray-900 dark:text-white transition-colors">
+          Skills & Expertise
         </h2>
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+          A diverse set of skills and technologies I work with to create amazing digital experiences
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {skillCategories.map((category, index) => (
             <div 
-              key={index} 
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
-              style={{ 
-                opacity: 0, 
-                animation: `fade-in 0.5s ease-out forwards`,
-                animationDelay: `${0.2 + index * 0.1}s`
-              }}
+              key={index}
+              className="relative group"
             >
-              <h3 className="text-xl font-semibold mb-6 text-foreground">{category.title}</h3>
-              
-              <div className="space-y-4">
-                {category.skills.map((skill, idx) => (
-                  <div key={idx} style={{ animationDelay: `${0.3 + idx * 0.1}s` }}>
-                    <div className="flex justify-between mb-1">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-foreground/70 text-sm">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-secondary rounded-full h-2.5">
-                      <div 
-                        className="bg-primary h-2.5 rounded-full transition-all duration-1000 ease-out"
-                        style={{ 
-                          width: '0%',
-                          animation: `skill-bar 1.5s ease-out forwards`,
-                          animationDelay: `${0.3 + idx * 0.1}s`
-                        }}
-                        data-width={`${skill.level}%`}
-                      ></div>
-                    </div>
+              <div className="absolute inset-0 bg-gradient-to-r w-full h-full blur-xl opacity-30 group-hover:opacity-40 transition-opacity"
+                   style={{
+                     background: `linear-gradient(135deg, ${category.color.split(' ')[1].replace('to-', '')} 0%, ${category.color.split(' ')[1].replace('to-', '')}66 100%)`
+                   }}
+              ></div>
+              <div className={`relative bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700`}>
+                <div className="flex items-center mb-6">
+                  <div className={`p-3 rounded-lg ${category.iconBg} bg-opacity-20 dark:bg-opacity-30`}>
+                    <span className={`text-2xl ${category.color.split(' ')[1]}`}>
+                      {category.icon}
+                    </span>
                   </div>
-                ))}
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white ml-4">
+                    {category.title}
+                  </h3>
+                </div>
+
+                <ul className="space-y-3">
+                  {category.skills.map((skill, i) => (
+                    <li 
+                      key={i}
+                      className="text-gray-600 dark:text-gray-300 flex items-center group"
+                    >
+                      <span className={`w-2 h-2 ${category.color.split(' ')[1]} rounded-full mr-3 group-hover:scale-125 transition-transform`}></span>
+                      <span className="group-hover:translate-x-1 transition-transform">
+                        {skill}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
