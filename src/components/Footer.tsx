@@ -14,7 +14,7 @@ const Footer = () => {
               href="https://github.com/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-all duration-300 transform hover:scale-110"
               aria-label="GitHub"
             >
               <Github size={20} />
@@ -23,14 +23,14 @@ const Footer = () => {
               href="https://linkedin.com/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-all duration-300 transform hover:scale-110"
               aria-label="LinkedIn"
             >
               <Linkedin size={20} />
             </a>
             <a 
               href="mailto:your-email@example.com" 
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-all duration-300 transform hover:scale-110"
               aria-label="Email"
             >
               <Mail size={20} />
