@@ -59,8 +59,8 @@ const FloatingParticles = () => {
     <points ref={particlesRef}>
       <bufferGeometry>
         <bufferAttribute
-          attach="attributes-position"
-          count={count}
+          attachObject={['attributes', 'position']}
+          count={positions.length / 3}
           array={positions}
           itemSize={3}
         />
