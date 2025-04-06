@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gauravaroracs.github.io/darmstadt-coder-folio",
+  "homepage": "https://gauravaroracs.github.io/darmstadt-coder-folio-public",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r git@github.com:gauravaroracs/darmstadt-coder-folio-public.git"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
