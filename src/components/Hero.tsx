@@ -1,12 +1,10 @@
 
 import React from 'react';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import ThreeDBackground from './ThreeDBackground';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-16 pb-10 overflow-hidden">
-      <ThreeDBackground />
+    <section id="home" className="relative min-h-screen flex items-center pt-16 pb-10 overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
           <div className="space-y-2 animate-fade-in">
