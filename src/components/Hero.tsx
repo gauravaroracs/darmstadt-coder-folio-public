@@ -1,11 +1,13 @@
 
 import React from 'react';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import ThreeDBackground from './ThreeDBackground';
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center pt-16 pb-10">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="home" className="relative min-h-screen flex items-center pt-16 pb-10 overflow-hidden">
+      <ThreeDBackground />
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
           <div className="space-y-2 animate-fade-in">
             <p className="text-primary text-lg md:text-xl font-medium">Hello, I'm</p>
